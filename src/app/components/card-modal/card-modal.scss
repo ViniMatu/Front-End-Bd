@@ -1,0 +1,61 @@
+@use "../../../styles/variables.scss";
+
+.modal-card {  
+    background-color: variables.$color-300;
+    width: 45%;
+    height: 45%;
+    border-radius: 8px;
+    padding: 30px;
+    
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .info-section {
+        display: flex;
+        flex-direction: row;
+        color: variables.$color-50;
+        margin-bottom: 30px;
+        gap: 30px;
+        
+        img {
+            width: 50%;
+            height: 50%;
+            flex-grow: 0.7;
+        }
+
+        .infos-filme {
+            width: 100%;
+            flex-direction: column;
+            display: flex;
+            justify-content: left;
+
+            h2 {
+                font-size: 36px;
+                margin-bottom: 25px;
+            }
+
+            p {
+                font-size: 26px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .sinopse-section {
+        background-color: variables.$color-100;
+        border-radius: 8px;
+        display: flex;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .comments-section {
+        background-color: variables.$color-50;
+        border-radius: 8px;
+        display: flex;
+        padding: 15px;
+    }
+}

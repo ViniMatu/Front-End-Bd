@@ -1,0 +1,7 @@
+<div class="grid">
+  <app-card-component class="card-component"
+    *ngFor="let filme of filmes"
+    [titulo]="filme.title"
+    [notaFilme]="filme.average_rating"
+  ></app-card-component>
+</div>

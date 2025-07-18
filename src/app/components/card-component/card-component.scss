@@ -1,0 +1,32 @@
+@use "../../../styles/variables.scss";
+
+.card {
+    border: 1px solid #ccc;
+    width: 16%;
+    height: 50%;
+    max-height: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px none;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+
+    background-color: variables.$color-300;
+
+    img {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+        border-radius: 6px 6px 0 0;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .filme {
+        color: variables.$color-50;
+        text-align: center;
+    }
+}
