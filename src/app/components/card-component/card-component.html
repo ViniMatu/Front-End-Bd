@@ -1,7 +1,11 @@
-<div class="card">
+<div class="card" (click)="onClick()">
     <img [src]="imagemUrl" alt=""/>
     <div class="filme">
-        <h3>{{ titulo }}</h3>
-        <span>{{ notaFilme }}</span>
+        <div class="div-title">
+            <h3>{{ titulo }}</h3>
+        </div>
+        <div class="div-raking">
+            <span><b>Nota:</b> {{ notaFilme }}</span>
+        </div>
     </div>
 </div>

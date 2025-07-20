@@ -2,12 +2,10 @@
 
 .card {
     border: 1px solid #ccc;
-    width: 16%;
-    height: 50%;
-    max-height: 50%;
     border-radius: 8px;
-    box-shadow: 2px 2px 8px none;
-    
+    box-shadow: 2px 2px 8px #0001;
+    padding: 15px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +13,12 @@
     overflow: hidden;
 
     background-color: variables.$color-300;
+
+    &:hover {
+        transform: scale(1.05);
+        z-index: 2;
+        cursor: pointer;
+    }
 
     img {
         width: 100%;
@@ -28,5 +32,18 @@
     .filme {
         color: variables.$color-50;
         text-align: center;
+        white-space: nowrap;         // Não quebra linha
+        overflow: hidden;            // Esconde o excesso
+        text-overflow: ellipsis;     // Adiciona "..."
+        width: 100%;                 // Garante que ocupe toda a largura do card
+        display: block;              // Garante comportamento esperado
+
+        .div-title {
+            margin-bottom: 10px;
+        }
+
+        .div-ranking {
+            margin-bottom: 10px;
+        }
     }
 }

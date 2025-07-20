@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-component',
@@ -6,8 +6,15 @@ import { Component, Input } from '@angular/core';
   templateUrl: './card-component.html',
   styleUrl: './card-component.scss'
 })
+
 export class CardComponent {
   @Input() titulo: string = '';
   @Input() notaFilme: string = '';
   @Input() imagemUrl: string = '/assets/svg/main-illustration.svg';
+
+  @Output() cardClick = new EventEmitter<void>();
+
+  onClick() {
+    this.cardClick.emit();
+  }
 }

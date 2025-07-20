@@ -1,13 +1,31 @@
 @use "../../../styles/variables.scss";
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); // fundo escuro semi-transparente
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
 .modal-card {  
+    position: relative;
+    z-index: 1000;
+    top: 0;
+    left: 0;
     background-color: variables.$color-300;
-    width: 45%;
-    height: 45%;
+    max-width: 900px;
+    min-width: 320px;
+    height: auto;
+    max-height: 90vh;
     border-radius: 8px;
     padding: 30px;
-    
-    overflow: scroll;
+    overflow-y: auto;
 
     &::-webkit-scrollbar {
         display: none;
@@ -22,15 +40,17 @@
         
         img {
             width: 50%;
-            height: 50%;
+            height: auto;
+            max-height: 250px;
             flex-grow: 0.7;
+            border-radius: 8px;
         }
 
         .infos-filme {
             width: 100%;
             flex-direction: column;
             display: flex;
-            justify-content: left;
+            justify-content: flex-start;
 
             h2 {
                 font-size: 36px;
@@ -57,5 +77,37 @@
         border-radius: 8px;
         display: flex;
         padding: 15px;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: variables.$color-50;
+        cursor: pointer;
+        z-index: 1001;
+
+        &:hover {
+            color: red;
+        }
+    }
+
+    // Responsividade para telas menores
+    @media (max-width: 768px) {
+        width: 90vw;
+        padding: 15px;
+
+        .info-section {
+            flex-direction: column;
+            gap: 15px;
+
+            img {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
     }
 }

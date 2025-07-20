@@ -1,7 +1,27 @@
-<div class="grid">
-  <app-card-component class="card-component"
-    *ngFor="let filme of filmes"
-    [titulo]="filme.title"
-    [notaFilme]="filme.average_rating"
-  ></app-card-component>
-</div>
+<section class="grid-wrapper">
+  <div *ngIf="!filmes$ || (filmes$ | async)?.length === 0">
+    {{ (filmes$ | async)?.length }}
+  </div>
+  <div class="grid" *ngIf="(filmes$ | async) as filmes">
+    <app-card-component class="card-component"
+      *ngFor="let filme of filmes"
+      [titulo]="filme.title ?? ''"
+      [notaFilme]="filme.average_rating ?? ''"
+      (cardClick)="abrirModal(filme)"
+    ></app-card-component>
+  </div>
+  <app-card-modal
+    *ngIf="modalAberto && filmeSelecionado"
+    [titulo]="filmeSelecionado.title || ''"
+    [nota]="filmeSelecionado.average_rating || ''"
+    [diretor]="filmeSelecionado.director || ''"
+    [duracao]="filmeSelecionado.runtime || ''"
+    [lancamento]="filmeSelecionado.year || ''"
+    [comentarios]="filmeSelecionado.comment || ''"
+    [genero]="filmeSelecionado.genre || ''"
+    [pais]="filmeSelecionado.country || ''"
+    (fechar)="fecharModal()"
+  ></app-card-modal>
+</section>
+
+
