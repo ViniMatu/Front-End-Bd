@@ -1,0 +1,68 @@
+@use "../../../styles/variables.scss";
+
+.modal-cliente {
+    position: relative;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: variables.$color-300;
+    max-width: 900px;
+    width: 100%;
+    min-width: 320px;
+    height: auto;
+    max-height: 90vh;
+    border-radius: 8px;
+    padding: 30px;
+    overflow-y: auto;
+    
+    line-height: normal;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cliente-section {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        color: variables.$color-50;
+        margin-bottom: 30px;
+        gap: 30px;
+
+        .contato {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+
+            .info-cliente {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                gap: 8px; // espaço entre h2 e span
+            }   
+        }
+
+        .filme-cliente-info {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: variables.$color-50;
+        cursor: pointer;
+        z-index: 1001;
+
+        &:hover {
+            color: red;
+        }
+    }
+}

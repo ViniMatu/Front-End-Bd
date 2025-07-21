@@ -1,0 +1,22 @@
+<div class="modal-overlay">
+  <div class="modal-cliente">
+    <button class="close-modal" (click)="fecharModalClientes()">x</button>
+    <section class="cliente-section">
+      <div class="contato">
+        <select [(ngModel)]="clienteSelecionado" (change)="onClienteChange()" [disabled]="loadingClientes">
+          <option value="" disabled selected *ngIf="loadingClientes">Carregando clientes...</option>
+          <option *ngFor="let cliente of clientes" [value]="cliente.PK">{{ cliente.PK }}</option>
+        </select>
+        <h2 *ngIf="infoCliente.length">{{ infoCliente[0].cliente.contato }}</h2>
+      </div>
+      <div class="filme-cliente-info">
+        <ng-container *ngFor="let info of infoCliente">
+          <p>Filme: {{ info.title }}</p>
+          <p class="tabbed">Nota: {{ info.rating }}</p>
+          <p class="tabbed">Comentário: {{ info.comment }}</p>
+          <p class="tabbed">Data: {{ info.timestamp | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </ng-container>
+      </div>
+    </section>
+  </div>
+</div>

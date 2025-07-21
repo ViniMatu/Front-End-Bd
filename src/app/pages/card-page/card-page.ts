@@ -1,15 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../components/card-component/card-component';
-import { DynamoService, MovieItem } from '../../services/dynamo.service';
+import { ClienteItem, DynamoService, MovieItem } from '../../services/dynamo.service';
 import { CardModal } from '../../components/card-modal/card-modal';
 import { Observable} from 'rxjs';
 
 export interface ComentariosComCliente {
-  cliente: { contato: string };
+  cliente: ClienteItem,
   comment: string;
   rating: string;
   timestamp: string;
+  title?: string;
 }
 
 interface FilmeComComentarios extends MovieItem {

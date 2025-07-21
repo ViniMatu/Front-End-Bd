@@ -1,18 +1,5 @@
 @use "../../../styles/variables.scss";
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); // fundo escuro semi-transparente
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
 .modal-card {  
     position: relative;
     z-index: 1000;
@@ -26,6 +13,8 @@
     border-radius: 8px;
     padding: 30px;
     overflow-y: auto;
+
+    line-height: normal;
 
     &::-webkit-scrollbar {
         display: none;

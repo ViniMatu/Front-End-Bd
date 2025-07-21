@@ -1,0 +1,24 @@
+<mat-toolbar class="navbar-color">
+    <span>Projeto Aspectos em Banco de Dados</span>
+    <span class="spacer"></span>
+    <div class="div-btn">
+        <button mat-button class="btn-color" (click)="abrirModalClientes()">Clientes</button>
+        <button mat-button class="btn-color" (click)="abrirModalSobre()">Sobre</button>
+        <button mat-button class="btn-color" (click)="abrirModalContato()">Contato</button>
+    </div>
+</mat-toolbar>
+
+<app-modal-clientes
+  *ngIf="mostrarModalClientes"
+  (fechar)="fecharModalClientes()">
+</app-modal-clientes>
+
+<app-modal-contato
+  *ngIf="mostrarModalContato"
+  (fechar)="fecharModalContato()"
+></app-modal-contato>
+
+<app-modal-sobre
+  *ngIf="mostrarModalSobre"
+  (fechar)="fecharModalSobre()"
+></app-modal-sobre>

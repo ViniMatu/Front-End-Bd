@@ -23,8 +23,15 @@ export interface MovieItem {
   runtime?: string;
 }
 
+export interface ClienteItem {
+  PK: string;
+  SK: string;
+  contato?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DynamoService {
+
   private client = new DynamoDBClient({
     region: environment.aws.region,
     credentials: {
@@ -139,6 +146,114 @@ export class DynamoService {
         return fullReviews;
       } catch (err) {
         console.error('Erro ao buscar reviews:', err);
+        return [];
+      }
+    };
+
+    return from(fetchReviews());
+  }
+
+  getAllClients(): Observable<ClienteItem[]> {
+    const params: ScanCommandInput = {
+      TableName: 'Catalogo_Filmes',
+      FilterExpression: 'SK = :cliente',
+      ExpressionAttributeValues: {
+        ':cliente': 'CLIENTE',
+      },
+      ProjectionExpression: 'PK, SK, contato',
+    };
+
+    const fetchClientes = async (): Promise<Pick<ClienteItem, 'PK' | 'SK' | 'contato'>[]> => {
+      try {
+        const command = new ScanCommand(params);
+        const result = await this.docClient.send(command);
+
+        let items: ClienteItem[] = (result.Items ?? []) as ClienteItem[];
+        let lastKey = result.LastEvaluatedKey;
+        while (lastKey) {
+          const nextParams: ScanCommandInput = {
+            ...params,
+            ExclusiveStartKey: lastKey,
+          };
+          const nextResult = await this.docClient.send(
+            new ScanCommand(nextParams)
+          );
+          items = items.concat((nextResult.Items ?? []) as ClienteItem[]);
+          lastKey = nextResult.LastEvaluatedKey;
+        }
+        return items;
+      } catch (err) {
+        console.error('Erro ao buscar filmes (Scan SK = MOVIE):', err);
+        throw err;
+      }
+    };
+    return from(fetchClientes());
+  }
+
+  getReviewsByClientPK(clientePK: string): Observable<ComentariosComCliente[]> {
+    const reviewPrefix = `REVIEW#${clientePK}`;
+    const params: ScanCommandInput = {
+      TableName: 'Catalogo_Filmes',
+      FilterExpression: 'begins_with(SK, :reviewPrefix)',
+      ExpressionAttributeValues: {
+        ':reviewPrefix': reviewPrefix,
+      },
+    };
+
+    const fetchReviews = async (): Promise<ComentariosComCliente[]> => {
+      try {
+        // Buscar os comentários feitos pelo cliente
+        const command = new ScanCommand(params);
+        const result = await this.docClient.send(command);
+        const reviews = result.Items ?? [];
+        // Buscar os dados do cliente uma única vez
+        const clienteParams = {
+          TableName: 'Catalogo_Filmes',
+          Key: {
+            PK: clientePK,
+            SK: 'CLIENTE',
+          },
+        };
+        const clienteResult = await this.docClient.send(new GetCommand(clienteParams));
+        const clienteData: ClienteItem = clienteResult.Item as ClienteItem;
+
+        // Para cada review, buscar o título do filme (PK da review = MOVIE#014)
+        const fullReviews = await Promise.all(reviews.map(async (review: any) => {
+          const filmePK = review.PK;
+          const filmeParams = {
+            TableName: 'Catalogo_Filmes',
+            Key: {
+              PK: filmePK,
+              SK: 'MOVIE',
+            },
+          };
+
+          try {
+            const filmeResult = await this.docClient.send(new GetCommand(filmeParams));
+            const filmeTitle = filmeResult.Item?.['title'] ?? 'Filme não encontrado';
+
+            return {
+              cliente: clienteData,
+              comment: review.comment,
+              rating: review.rating,
+              timestamp: review.timestamp,
+              title: filmeTitle,
+            };
+          } catch (err) {
+            console.error('Erro ao buscar título do filme:', err);
+            return {
+              cliente: clienteData,
+              comment: review.comment,
+              rating: review.rating,
+              timestamp: review.timestamp,
+              title: 'Erro ao buscar título',
+            };
+          }
+        }));
+
+        return fullReviews;
+      } catch (err) {
+        console.error('Erro ao buscar comentários do cliente:', err);
         return [];
       }
     };

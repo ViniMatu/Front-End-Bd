@@ -1,0 +1,20 @@
+@use "../../../styles/variables.scss";
+
+.navbar-color {
+    position: fixed;
+    background-color: variables.$color-50;
+    z-index: 950;
+
+    .div-btn {
+        display: flex;
+        gap: 5px;
+
+        .btn-color {
+            background-color: #B7B7B7;
+        }
+    }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
