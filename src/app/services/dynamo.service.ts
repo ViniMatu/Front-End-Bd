@@ -19,8 +19,9 @@ export interface MovieItem {
   genre?: string;
   country?: string;
   director?: string;
-  imagem?: string;
+  image_url?: string;
   runtime?: string;
+  synopsis?: string;
 }
 
 export interface ClienteItem {
@@ -51,7 +52,7 @@ export class DynamoService {
       ExpressionAttributeValues: {
         ':movie': 'MOVIE',
       },
-      ProjectionExpression: 'PK, SK, title, average_rating',
+      ProjectionExpression: 'PK, SK, title, average_rating, image_url',
     };
 
     const fetchMovies = async (): Promise<Pick<MovieItem, 'PK' | 'SK' | 'title' | 'average_rating'>[]> => {
@@ -92,6 +93,7 @@ export class DynamoService {
       try{
         const command = new GetCommand(params);
         const result = await this.docClient.send(command);
+        console.log(result.Item);
         return result.Item as MovieItem ?? null;
       } catch (err){
         console.error("Erro ao buscar filme por ID: ", err);

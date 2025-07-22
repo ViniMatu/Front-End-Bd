@@ -21,6 +21,7 @@ export class CardModal implements OnInit, OnDestroy{
   @Input() pais: string = '';
   @Input() genero: string = '';
   @Input() comentarios: ComentariosComCliente[] = [];
+  @Input() imagem: string = '';
 
   @Output() fechar = new EventEmitter<void>();
 

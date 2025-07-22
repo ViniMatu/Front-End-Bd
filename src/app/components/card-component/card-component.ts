@@ -10,11 +10,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CardComponent {
   @Input() titulo: string = '';
   @Input() notaFilme: string = '';
-  @Input() imagemUrl: string = '/assets/svg/main-illustration.svg';
+  @Input() imagem: string = '';
 
   @Output() cardClick = new EventEmitter<void>();
 
   onClick() {
     this.cardClick.emit();
+  }
+
+  getImageUrl(imgPath: string): string {
+    if(imgPath.startsWith('s3')){
+      return `${imgPath}`;
+    }
+    return imgPath;
   }
 }

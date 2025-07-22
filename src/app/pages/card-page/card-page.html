@@ -7,6 +7,7 @@
       *ngFor="let filme of filmes"
       [titulo]="filme.title ?? ''"
       [notaFilme]="filme.average_rating ?? ''"
+      [imagem]="filme.image_url ?? '' "
       (cardClick)="abrirModal(filme)"
     ></app-card-component>
   </div>
@@ -20,6 +21,8 @@
     [comentarios]="filmeSelecionado.comment || ''"
     [genero]="filmeSelecionado.genre || ''"
     [pais]="filmeSelecionado.country || ''"
+    [sinopse]="filmeSelecionado.synopsis || ''"
+    [imagem]="filmeSelecionado.image_url || ''"
     (fechar)="fecharModal()"
   ></app-card-modal>
 </section>

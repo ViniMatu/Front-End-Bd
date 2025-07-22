@@ -2,7 +2,7 @@
     <div class="modal-card">
         <button class="close-modal" (click)="fecharModal()">x</button>
         <section class="info-section">
-            <img src='/assets/svg/main-illustration.svg' alt="">
+            <img [src]='imagem' alt="">
             <div class="infos-filme">
                 <h2>{{ titulo }}</h2>
                 <p><b>Nota:</b> {{ nota }} / 5</p>
