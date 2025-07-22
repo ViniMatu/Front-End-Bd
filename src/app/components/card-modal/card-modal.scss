@@ -27,13 +27,16 @@
         margin-bottom: 30px;
         gap: 30px;
         
-        img {
-            width: 50%;
-            height: auto;
-            max-height: 250px;
-            flex-grow: 0.7;
-            border-radius: 8px;
-        }
+    img {
+        width: 50%;
+        aspect-ratio: 3/4; // Mantém proporção fixa (opcional, ajuste conforme necessário)
+        object-fit: cover;
+        border-radius: 6px 6px 0 0;
+        margin-bottom: 8px;
+        display: block;
+        min-height: 200px; // Garante altura mínima
+        max-height: 350px; // Limita altura máxima
+    }
 
         .infos-filme {
             width: 100%;
