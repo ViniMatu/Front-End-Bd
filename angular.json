@@ -17,10 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath":{
-              "base": "docs/",
-              "browser": ""
-            },
+            "outputPath": "docs/",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -36,6 +33,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "sourceMap": true,
               "budgets": [
                 {

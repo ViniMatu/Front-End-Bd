@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/navbar-component/navbar-component.scss", "src/styles/variables.scss"],
+  "sourcesContent": ["@use \"../../../styles/variables.scss\";\r\n\r\n.navbar-color {\r\n    position: fixed;\r\n    background-color: variables.$color-50;\r\n    z-index: 950;\r\n\r\n    .div-btn {\r\n        display: flex;\r\n        gap: 5px;\r\n\r\n        .btn-color {\r\n            background-color: #B7B7B7;\r\n        }\r\n    }\r\n}\r\n\r\n.spacer {\r\n  flex: 1 1 auto;\r\n}", "$color-50: #EFF0F9;\r\n$color-100: #ACB5E4;\r\n$color-200: #6276C8;\r\n$color-300: #233070;\r\n$color-400: #0D153F;\r\n$color-500: #030519;\r\n"],
+  "mappings": "AAEA,CAAA,aACI,SAAA,MACA,iBCJO,QDKP,QAAA,IAEA,CALJ,aAKI,CAAA,QACI,QAAA,KACA,IAAA,IAEA,CATR,aASQ,CAJJ,QAII,CAAA,UACI,iBAAA,QAKZ,CAAA,OACE,KAAA,EAAA,EAAA",
+  "names": []
+}

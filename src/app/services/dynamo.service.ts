@@ -6,9 +6,9 @@ import {
   ScanCommand,
   ScanCommandInput,
 } from '@aws-sdk/lib-dynamodb';
-import { environment } from '../../environments/environment';
 import { Observable, from } from 'rxjs';
 import { ComentariosComCliente } from '../pages/card-page/card-page';
+import { environment } from '../../environments/environment';
 
 export interface MovieItem {
   PK: string;

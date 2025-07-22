@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   aws: {
     region: 'sa-east-1',
     accessKeyId: 'AKIAZUKYTIGU7FI4FYAX',
