@@ -20,7 +20,7 @@ export class CardComponent {
 
   getImageUrl(imgPath: string): string {
     if(imgPath.startsWith('s3')){
-      return `${imgPath}`;
+      return `https://bucket-catalog-filmes.s3.sa-east-1.amazonaws.com/${imgPath.replace('s3://bucket-catalog-filmes/', '')}`;
     }
     return imgPath;
   }

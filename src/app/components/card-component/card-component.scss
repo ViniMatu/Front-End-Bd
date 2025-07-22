@@ -6,6 +6,8 @@
     box-shadow: 2px 2px 8px #0001;
     padding: 15px;
 
+    min-height: 507px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,15 +24,18 @@
 
     img {
         width: 100%;
-        height: 80%;
+        aspect-ratio: 3/4; // Mantém proporção fixa (opcional, ajuste conforme necessário)
         object-fit: cover;
         border-radius: 6px 6px 0 0;
         margin-bottom: 8px;
         display: block;
+        min-height: 200px; // Garante altura mínima
+        max-height: 350px; // Limita altura máxima
     }
 
     .filme {
         color: variables.$color-50;
+        justify-content: end;
         text-align: center;
         white-space: nowrap;         // Não quebra linha
         overflow: hidden;            // Esconde o excesso
